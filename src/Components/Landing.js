@@ -48,10 +48,21 @@ function Landing() {
     {
       title: "Tracking#",
       field: "tracking",
+      render: (row) => (
+        <div
+          className="cursor-pointer"
+          onClick={() =>
+            (window.open(`https://www.google.com/search?q=${row.tracking}&rlz=1C1RXQR_enIN971IN971&oq=${row.tracking}`,"_blank"))
+          }
+        >
+          {row.tracking}
+        </div>
+      ),
     },
     {
       title: "Tracking Status",
       field: "trackingStatus",
+      editable: "never",
     },
     {
       title: "Mark as Delievered",
@@ -61,55 +72,7 @@ function Landing() {
     },
   ]);
 
-  const [data, setData] = useState([
-    // {
-    //   pn: "Mehmet",
-    //   supplier: "Baran",
-    //   deliveryDate: 1987,
-    //   qty: 63,
-    //   tracking: "",
-    //   trackingStatus: "",
-    //   markDelivered: "pending",
-    // },
-    // {
-    //   pn: "Mehmet",
-    //   supplier: "Baran",
-    //   deliveryDate: 1987,
-    //   qty: 63,
-    //   tracking: "",
-    //   trackingStatus: "",
-    //   markDelivered: "pending",
-    // },
-    // {
-    //   pn: "Mehmet",
-    //   supplier: "Baran",
-    //   deliveryDate: 1987,
-    //   qty: 63,
-    //   tracking: "",
-    //   trackingStatus: "",
-    //   markDelivered: "pending",
-    // },
-    // {
-    //   pn: "Mehmet",
-    //   supplier: "Baran",
-    //   deliveryDate: 1987,
-    //   qty: 63,
-    //   tracking: "",
-    //   trackingStatus: "",
-    //   markDelivered: "pending",
-    // },
-    // {
-    //   pn: "Mehmet",
-    //   supplier: "Baran",
-    //   deliveryDate: 1987,
-    //   qty: 63,
-    //   tracking: "",
-    //   trackingStatus: "",
-    //   markDelivered: "pending",
-    // },
-  ]);
-
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     getData();
@@ -131,21 +94,18 @@ function Landing() {
   const addData = async (e) => {
     if (e) {
       let data = await createData(e);
-      // console.log(data?.data);
       getData();
     }
   };
   const deleteTable = async (e) => {
     if (e) {
       let data = await deleteData(e._id);
-      // console.log(data?.data);
       getData();
     }
   };
   const updateTable = async (e) => {
     if (e) {
       let data = await updateData(e);
-      // console.log(data?.data);
       getData();
     }
   };
